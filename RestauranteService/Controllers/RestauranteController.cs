@@ -2,7 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RestauranteService.Data;
 using RestauranteService.Dtos;
-using RestauranteService.ItemServiceHttpClient;
+using RestauranteService.Http;
 using RestauranteService.Models;
 
 namespace RestauranteService.Controllers;
@@ -55,7 +55,6 @@ public class RestauranteController : ControllerBase
         var restauranteReadDto = _mapper.Map<RestauranteReadDto>(restaurante);
 
         _itemServiceHttpClient.EnviaRestauranteParaItemService(restauranteReadDto);
-
 
         return CreatedAtRoute(nameof(GetRestauranteById), new { restauranteReadDto.Id }, restauranteReadDto);
     }
